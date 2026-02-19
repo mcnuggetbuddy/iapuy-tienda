@@ -5,15 +5,12 @@
 package com.techShop.tienda.repository;
 
 import com.techShop.tienda.domain.Categoria;
-import java.util.*;
-import org.springframework.data.jpa.repository.*;
-import org.springframework.stereotype.*;
+import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-/**
- *
- * @author israelapuy
- */
 @Repository
-public interface CategoriaRepository extends JpaRepository<Categoria, Integer>{
+public interface CategoriaRepository extends JpaRepository<Categoria, Integer> {
+
     public List<Categoria> findByActivoTrue();
 }
