@@ -85,5 +85,15 @@ public class ProductoService {
     public List<Producto> consultaSQL(double precioInf, double precioSup) {
         return productoRepository.consultaSQL(precioInf, precioSup);
     }
+    
+    @Transactional(readOnly=true)
+    public List<Producto> productosMasNuevos(){
+        return productoRepository.findAllByOrderByIdProductoDesc();
+    }
+    
+    @Transactional(readOnly = true)
+    public List<Producto> productosMasViejos() {
+        return productoRepository.findAllByOrderByIdProductoAsc();
+    }
 
 }

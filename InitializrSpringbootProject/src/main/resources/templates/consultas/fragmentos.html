@@ -63,7 +63,19 @@
     <div th:replace="~{consultas/fragmentos :: formConsulta('primary',#{consultas.derivadas},'/consultas/consultaDerivada')}"/>
     <div th:replace="~{consultas/fragmentos :: formConsulta('warning',#{consultas.jpql},'/consultas/consultaJPQL')}"/>
     <div th:replace="~{consultas/fragmentos :: formConsulta('success',#{consultas.sql},'/consultas/consultaSQL')}"/>
-    <div class='card'><p>Acá va su Práctica #2</p></div>
+    <div class="card p-3 text-center">
+        <div class="card-header text-center text-white bg-dark">
+            <h5 th:text="#{consultas.fecha}"></h5>
+        </div>        
+        <p th:text="#{producto.nuevo}"/>
+        <a th:href="@{/consultas/productosMasNuevos}" class="btn btn-dark">
+            [[#{producto.buscar}]]
+        </a>
+        <p th:text="#{producto.viejo}"/>
+        <a th:href="@{/consultas/productosMasViejos}" class="btn btn-dark">
+            [[#{producto.buscar}]]
+        </a>
+    </div>
 </section>
 
 <!-- fragmento 4 para mostrar el formulario factorizado -->

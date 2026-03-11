@@ -5,7 +5,6 @@
 package com.techShop.tienda.controller;
 
 import com.techShop.tienda.service.ProductoService;
-import java.math.BigDecimal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -58,6 +57,20 @@ public class ConsultaController {
         model.addAttribute("productos", lista);
         model.addAttribute("precioInf", precioInf);
         model.addAttribute("precioSup", precioSup);
+        return "/consultas/listado";
+    }
+    
+    @GetMapping("/productosMasNuevos")
+    public String productosMasNuevos(Model model) {
+        var lista = productoService.productosMasNuevos();
+        model.addAttribute("productos", lista);
+        return "/consultas/listado";
+    }
+    
+    @GetMapping("/productosMasViejos")
+    public String productosMasViejos(Model model) {
+        var lista = productoService.productosMasViejos();
+        model.addAttribute("productos", lista);
         return "/consultas/listado";
     }
 }
