@@ -18,7 +18,7 @@
 
 
 <!-- Fragmento #2  define el encabezado de las páginas, en concreto el menú y enlaces rápidos -->
-<header th:fragment="header" class="header">
+<header th:fragment="header" class="header d-print-none">
     <nav class="navbar navbar-expand-sm p-0">
         <div class="container">                    
             <a th:href="@{/}" class="navbar-brand">[[#{aplicacion.titulo}]]</a>
@@ -30,12 +30,12 @@
                     <li class="nav-item px-2"><a class="nav-link" th:href="@{/categoria/listado}">[[#{plantilla.categorias}]]</a></li>
                     <li class="nav-item px-2"><a class="nav-link" th:href="@{/producto/listado}">[[#{plantilla.productos}]]</a></li>
                     <li class="nav-item px-2"><a class="nav-link" th:href="@{/consultas/listado}">[[#{plantilla.consultas}]]</a></li>                                
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown" sec:authorize="hasRole('ROLE_ADMIN')">
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
                             [[#{plantilla.admin}]]</a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" th:href="@{/usuario/listado}">[[#{plantilla.usuarios}]]</a></li>                                    
-                            <li class="submenu submenu-md dropend" sec:authorize="hasRole('ROLE_ADMIN')">
+                            <li class="submenu submenu-md dropend">
                                 <a class="dropdown-item dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false"
                                    onclick="event.stopPropagation();">
                                     [[#{plantilla.seguridad}]]
@@ -63,7 +63,7 @@
                     </li>
                 </ul>
                 <div id="resultBlock">
-                </div>         
+                </div>
                 <ul class="navbar-nav" sec:authorize="!isAuthenticated()">
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{/login}">
@@ -75,7 +75,9 @@
                 <ul class="navbar-nav" sec:authorize="isAuthenticated()">
                     <li class="nav-item my-auto">
                         <a class="nav-link">
-                            <i class="fas fa-user"></i>
+                            <img th:src="@{${session.imagenUsuario}}" 
+                                 alt="your image" height="40" class="rounded-circle"/>
+
                             <span sec:authentication="name" class="ms-1"></span>
                         </a>
                     </li>
@@ -88,7 +90,6 @@
                         </form>
                     </li>
                 </ul>
-
             </div>
         </div>
     </nav>
@@ -104,7 +105,7 @@
 </header>
 
 <!-- Fragmento #3  define el footer de las páginas, aparte de esto se podria incluir enlaces a redes socilaes y demás -->
-<footer th:fragment="footer" class="p-2 mt-5 bg-info text-white">
+<footer th:fragment="footer" class="p-2 mt-5 bg-info text-white d-print-none">
     <p class="lead text-center">[[#{plantilla.derechos}]] &COPY;</p>
 </footer>
 
@@ -134,7 +135,7 @@
              aria-atomic="true"
              data-bs-autohide="true">
             <div class="toast-header text-white bg-success">
-                <i class="fa-solid fa-square-check"></i> <strong class=me-auto> [[#{atencion}]]</strong>
+                <i class="fa-solid fa-square-check"></i> <strong clas=me-auto> [[#{atencion}]]</strong>
             </div>
             <div class="toast-body">
                 <p>[[${todoOk}]]</p>
